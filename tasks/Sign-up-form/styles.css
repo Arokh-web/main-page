@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    }
+
+    :root {
+        --primary-text-color: darkblue; /* Simple Black */
+        --secondary-text-color: lightblue; /* Apple Green */
+        --third-text-color: gold; /* Tea Green */
+ 
+        --background-color: #f0f8ff; /* Prussian Blue */
+        --hover-color: darkred; /* Tea Green */
+        --button-color: #007bff;
+    }
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#registration {
+    display: grid;
+    grid-template-columns: 120px 250px;
+    align-items: center;
+    padding: 2%;
+    gap: 5%;
+}
+
+#registration label {
+    grid-column: 1;
+}
+
+#registration input {
+    grid-column: 2;
+}
+
+button[type="submit"] {
+    color: aliceblue;
+    background-color: var(--button-color)
+}

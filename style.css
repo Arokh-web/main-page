@@ -118,7 +118,23 @@ figcaption {
     font-weight: 200;
 }
 
+.textfeld {
+    text-align: justify;
+    font-family: OpenDyslexic;
+    font-weight: 100;
+    color: var(--secondary-text-color);
+}
+
+#contactlist {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: OpenDyslexic;
+    color: #99aa38;
+}
+
 /* Tasks */
+
 /* funindex */
 #funindex-container {
     display: flex;
@@ -126,8 +142,10 @@ figcaption {
     align-items: center;
 }
 
-#iframe-container {
+.iframe-container {
     border: none;
+    width: 100%;
+    height: 100%;
 }
 
 /* About Me */
