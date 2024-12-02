@@ -78,6 +78,8 @@ a {
     list-style: none;
 }
 
+/*Footer */
+
 .footer {
     padding: 3%;
     font-family: OpenDyslexic;
@@ -111,6 +113,8 @@ figcaption {
     margin: 2%;
 }
 
+/* Common Options */
+
 #headline {
     text-align: center;
     color: var(--secondary-text-color);
@@ -123,6 +127,15 @@ figcaption {
     font-family: OpenDyslexic;
     font-weight: 100;
     color: var(--secondary-text-color);
+}
+
+#textfeld-about {
+    text-align: justify;
+    font-family: OpenDyslexic;
+    font-weight: 100;
+    color: var(--secondary-text-color);
+    width: 65%;
+    height: 100%;
 }
 
 #contactlist {
