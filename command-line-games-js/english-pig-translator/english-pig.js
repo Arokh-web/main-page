@@ -14,6 +14,8 @@ let outcomeWord;
 // Program-Run
 errorHandler1()
 wordcheck()
+// userOutput.push(outcomeWord)
+console.log(userOutput.join(" "))
 
 // Error Handling and Reducing - VERSION ONE without Switch
     // Error Message: Wrong Input (empty, only numbers, correct input)
@@ -92,28 +94,31 @@ function consonantCheck (consonant, FirstChar) {
 // Example: Child = Ildch + ay = Ildchay
 // If a word starts with a vowel add the word “way” at the end of the word.
 // Example: Awesome = Awesome +way = Awesomeway
-function wordcheck (userOutput) {
+function wordcheck (word) {
     for (word of userInput) {
     FirstChar = word.slice(0, 1).toLowerCase();
     SecChar = word.slice(1, 2);
-    console.log(FirstChar)
+    // console.log(FirstChar)
     // console.log("Grundwort: ", word)
     if (vowelCheck(vowel, FirstChar)) {
         console.log("First char is a vowel: ", word)
         outcomeWord = word + "way";
+        // console.log("Changed phrase is so far: ", userOutput)
     } else if (consonantCheck(consonant, FirstChar) === true) {
         if (vowelCheck(vowel, SecChar) === true) {
             console.log("First is a consonant, second is a vowel: ", word)
             outcomeWord = word.slice(1) + FirstChar + "ay";
-            console.log("Changed word is so far: ", outcomeWord)
-            userOutput.push(outcomeWord);
-            console.log(userInput);
+            // console.log("Changed phrase is so far: ", userOutput)
+            // userOutput.push(outcomeWord);
+            // console.log(userOutput);
         } else {
             console.log("Second Char is a consonant: ", word)
             outcomeWord = word.slice(2) + FirstChar + SecChar + "ay";
-            console.log("Changed word is so far: ", outcomeWord)
-            userOutput.push(outcomeWord);
-            console.log(userInput);
+            // console.log("Changed phrase is so far: ", userOutput)
+            // userOutput.push(outcomeWord);
+            // console.log(userOutput);
         }
     } 
-}}
+    userOutput.push(outcomeWord);
+}   return userOutput;
+}
