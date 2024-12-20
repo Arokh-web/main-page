@@ -10,12 +10,15 @@ let FirstChar;
 let SecChar;
 let userOutput = [];
 let outcomeWord;
+let wordNumber;
+let wordSign;
 
 // Program-Run
 errorHandler1()
 wordcheck()
+wordprocessed()
 // userOutput.push(outcomeWord)
-console.log(userOutput.join(" "))
+console.log("In Pig-Language this is: ", userOutput.join(" "))
 
 // Error Handling and Reducing - VERSION ONE without Switch
     // Error Message: Wrong Input (empty, only numbers, correct input)
@@ -71,10 +74,7 @@ switch (inputType) {
         break;
     }}
 
-// Here starts the first check: 
-
-
-// The LETTERCHECK
+// The CHARACTERCHECK
 function vowelCheck (vowel, SecChar) {
     for (i of vowel) {
         if (SecChar === i)
@@ -87,38 +87,55 @@ function consonantCheck (consonant, FirstChar) {
             return true;
     }}
 
-    // The WORDCHECK
+// The WORDCHECK
     // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add “ay.”
     // Example: Happy = appyh + ay = appyhay
     // If a word starts with two consonants move the two consonants to the end of the word and add “ay.”
-// Example: Child = Ildch + ay = Ildchay
-// If a word starts with a vowel add the word “way” at the end of the word.
-// Example: Awesome = Awesome +way = Awesomeway
-function wordcheck (word) {
-    for (word of userInput) {
-    FirstChar = word.slice(0, 1).toLowerCase();
-    SecChar = word.slice(1, 2);
-    // console.log(FirstChar)
-    // console.log("Grundwort: ", word)
-    if (vowelCheck(vowel, FirstChar)) {
-        console.log("First char is a vowel: ", word)
-        outcomeWord = word + "way";
-        // console.log("Changed phrase is so far: ", userOutput)
-    } else if (consonantCheck(consonant, FirstChar) === true) {
-        if (vowelCheck(vowel, SecChar) === true) {
-            console.log("First is a consonant, second is a vowel: ", word)
-            outcomeWord = word.slice(1) + FirstChar + "ay";
-            // console.log("Changed phrase is so far: ", userOutput)
-            // userOutput.push(outcomeWord);
-            // console.log(userOutput);
-        } else {
-            console.log("Second Char is a consonant: ", word)
-            outcomeWord = word.slice(2) + FirstChar + SecChar + "ay";
-            // console.log("Changed phrase is so far: ", userOutput)
-            // userOutput.push(outcomeWord);
-            // console.log(userOutput);
-        }
-    } 
-    userOutput.push(outcomeWord);
-}   return userOutput;
+    // Example: Child = Ildch + ay = Ildchay
+    // If a word starts with a vowel add the word “way” at the end of the word.
+    // Example: Awesome = Awesome +way = Awesomeway
+
+function wordcheck () //
+{
+// Processing the input: making the word an array with parameters; getting the word itself with word[1], make it a string and slice the first and second character out.
+    for (word of userInput) 
+{
+        word = word.match(/(\w+)([.,!?]*)/);
+        FirstChar = word[1].toString();
+        FirstChar = FirstChar.slice(0, 1).toLowerCase();
+        SecChar = word[1].toString();
+        SecChar = SecChar.slice(1, 2).toLowerCase();
+// If it is a number, the outcome is a number plus the punctuation.
+    if (!isNaN(Number(word[1]))) 
+{
+        // console.log("The Number is: ", word[1])
+        outcomeWord = word[1] + word[2]
+} else if (vowelCheck(vowel, FirstChar)) 
+{
+            // console.log("First char is a vowel: ", word[1])
+            outcomeWord = word[1] + "way" + word[2];
+
+} else if (consonantCheck(consonant, FirstChar) === true) 
+{
+                    if (vowelCheck(vowel, SecChar) === true) 
+{
+                // console.log("First is a consonant, second is a vowel: ", word[1])
+                outcomeWord = word[1].slice(1) + FirstChar + "ay" + word[2];
+
+} else if (consonantCheck(consonant, SecChar) === true)
+{
+                    // console.log("Second Char is a consonant: ", word[1])
+                    outcomeWord = word[1].slice(2) + FirstChar + SecChar + "ay" + word[2];
+
+} 
+} userOutput.push(outcomeWord);
+} 
+return userOutput;
 }
+
+
+// Word Process Finish
+// function wordprocess (userOutput) {
+//     userOutput = userOutput.join (" ")
+//     userOutput.
+// }
