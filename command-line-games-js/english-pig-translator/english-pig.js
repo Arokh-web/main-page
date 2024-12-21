@@ -2,42 +2,37 @@
 
 // setting variables and managing the input
 let userInput = process.argv.slice(2);
-let inputType;
-let userInputString;
+let userOutput = [];
 const consonant = ["B", "b", "C", "c", "D", "d", "F", "f", "G", "g", "H", "h", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
 const vowel = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u"]
+let inputType;
 let FirstChar;
 let SecChar;
-let userOutput = [];
 let outcomeWord;
 let wordNumber;
 let wordSign;
 
-// Program-Run
+// Program-Run-Cycle
 errorHandler1()
 wordcheck()
 wordprocessed()
-// userOutput.push(outcomeWord)
 console.log("In Pig-Language this is: ", userOutput.join(" "))
 
-// Error Handling and Reducing - VERSION ONE without Switch
+// VERSION ONE - Error Handling and Reducing - without Switch
     // Error Message: Wrong Input (empty, only numbers, correct input)
     function errorHandler1() {
     if (userInput.length === 0) {
         console.error("Please write something. This is a translator! It needs input!");
     } else if (userInput.every(i => !isNaN(Number(i)))) {
-        let userInputString = userInput.join(" ")
-        console.log(`Your input was: ${userInputString}`); 
+        console.log(`Your input was: ${userInput.join(" ")}`); 
         console.log("You only wrote numbers. But we need text?!")
     } else {
-        let userInputString = userInput.join(" ")
-        return console.log(`Your input was: ${userInputString}`); 
+        console.log(`Your input was: ${userInput.join(" ")}`);
     }}
 
-// console.log(userInputString)
-
-// Error Handling and Reducing - VERSION TWO with Switch
+// VERSION TWO - Error Handling and Reducing - with Switch
     // Error Message: Wrong Input (empty, only numbers, correct input)
+    // Possibility to easier add new cases, e.g. other input types that would lead to errors.
     function errorHandler2() {
     if (userInput.length === 0) {
         inputType = "empty";
@@ -97,9 +92,9 @@ function consonantCheck (consonant, FirstChar) {
 
 function wordcheck () //
 {
-// Processing the input: making the word an array with parameters; getting the word itself with word[1], make it a string and slice the first and second character out.
-    for (word of userInput) 
-{
+// Processing the input: making the word an array with parameters and catching the punctuation; 
+// getting the word itself with word[1], the punctuation with word[2], make it a string and slice the first and second character out.
+    for (word of userInput) {
         word = word.match(/(\w+)([.,!?]*)/);
         FirstChar = word[1].toString();
         FirstChar = FirstChar.slice(0, 1).toLowerCase();
