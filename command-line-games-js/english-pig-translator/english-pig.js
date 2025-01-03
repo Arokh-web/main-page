@@ -101,7 +101,7 @@ function wordcheck() {
   // Processing the input: making the word an array with parameters and catching the punctuation;
   // getting the word itself with word[1], the punctuation with word[2], make it a string and slice the first and second character out.
   for (word of userInput) {
-    word = word.match(/(\w+)([.,!?]*)/);
+    word = word.match(/(\w+)(['.,!?]*)/);
     FirstChar = word[1].toString().slice(0, 1);
     SecChar = word[1].toString().slice(1, 2);
     // If it is a number, the outcome is a number plus the punctuation.
