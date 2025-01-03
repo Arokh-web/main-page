@@ -10,11 +10,22 @@ const fullAlphabet = {
   "up": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
   "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Ü", "Ä", "Ö"]
   };
+const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 // Program-Run-Cycle with all relevant functions.
 errorHandler();
-encrypt(userInput);
-console.log(userOutput.join(" "));
+switch (userInput[1]) {
+  case "encrypt":
+    console.log(encrypt().join(""));
+    break;
+  case "decrypt":
+    console.log(decrypt().join(""));
+    break;
+  default:
+    console.log(
+      "Need argument: Do you want to encrypt or decrypt? (Needs to be the 2nd argument) Don't forget to set the right cipher for decryption."
+    );
+}
 
 // Error Handler
 function errorHandler() {
@@ -25,19 +36,22 @@ function errorHandler() {
   } else if (userInput.every((i) => !isNaN(Number(i)))) {
     console.log(`Your input was: ${userInput.join(" ")}`);
     console.log(
-      "You only wrote numbers. But we need just one number and text?!"
+      "You only wrote numbers. But we need a shift number, the command (encrypt/decrypt) and text."
     );
   } else {
-    console.log(`Your input was: ${userInput.join(" ")}. Processing...`);
+    console.log(`Your input was: ${userInput.join(" ")}.`);
   }
 }
 
+// Encryption function
 function encrypt() {
-  let shiftNum = userInput[0];
+  console.log("Processing...");
+  let shiftNum = parseInt(userInput[0], 10);
+  userInput.shift();
   userInput.shift();
   userInput = userInput.join(" ").split("");
 
-  userInput.forEach((char, i) => {
+  userInput.forEach((char) => {
     if (fullAlphabet.low.includes(char)) {
       let alphaIndex = fullAlphabet.low.indexOf(char);
       userOutput.push(
@@ -48,32 +62,49 @@ function encrypt() {
       userOutput.push(
         fullAlphabet.up[(alphaIndex + shiftNum) % fullAlphabet.up.length]
       );
+    } else if (numbers.includes(char)) {
+      let alphaIndex = numbers.indexOf(char);
+      userOutput.push(numbers[(alphaIndex + shiftNum) % numbers.length]);
     } else {
       userOutput.push(char);
     }
-    return userOutput;
   });
+  console.log("Done:");
+  return userOutput;
 }
-// function encrypt(userInput) {
-//   let shiftNum = parseInt(userInput[0], 10);
-//   console.log(shiftNum);
-//   userInput.shift();
-//   for (let i = 0; i < userInput.length; i++) {
-//     let char = userInput[i];
-//     if (fullAlphabet.low.includes(char)) {
-//       let currentIndex = fullAlphabet.low.indexOf(char);
-//       console.log(currentIndex);
-//       let newIndex = (currentIndex + shiftNum) % fullAlphabet.low.length;
-//       console.log(newIndex);
-//       userOutput.push(fullAlphabet.low[newIndex]);
-//     } else if (fullAlphabet.up.includes(char)) {
-//       let currentIndex = fullAlphabet.up.indexOf(char);
-//       let newIndex = (currentIndex + shiftNum) % fullAlphabet.up.length;
-//       console.log(newIndex);
-//       userOutput.push(fullAlphabet.up[newIndex]);
-//     } else {
-//       userOutput.push(char);
-//     }
-//   }
-//   return userOutput;
-// }
+
+// Decryption function
+function decrypt() {
+  let shiftNum = parseInt(userInput[0], 10);
+  userInput.shift();
+  userInput.shift();
+  userInput = userInput.join(" ").split("");
+
+  userInput.forEach((char) => {
+    if (fullAlphabet.low.includes(char)) {
+      let alphaIndex = fullAlphabet.low.indexOf(char);
+      userOutput.push(
+        fullAlphabet.low[
+          (alphaIndex - shiftNum + fullAlphabet.low.length) %
+            fullAlphabet.low.length
+        ]
+      );
+    } else if (fullAlphabet.up.includes(char)) {
+      let alphaIndex = fullAlphabet.up.indexOf(char);
+      userOutput.push(
+        fullAlphabet.up[
+          (alphaIndex - shiftNum + fullAlphabet.up.length) %
+            fullAlphabet.up.length
+        ]
+      );
+    } else if (numbers.includes(char)) {
+      let alphaIndex = numbers.indexOf(char);
+      userOutput.push(
+        numbers[(alphaIndex - shiftNum + numbers.length) % numbers.length]
+      );
+    } else {
+      userOutput.push(char);
+    }
+  });
+  return userOutput;
+}
