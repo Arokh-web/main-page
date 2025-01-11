@@ -62,7 +62,7 @@ if (computer === userInput) {
   console.log("You win!");
 } else if (
   computer ===
-  "to get confused with its digital hands and showed a knot of nothing"
+  "to get confused with its digital hands and showed a knot of nothing!"
 ) {
   console.log("You clearly win!");
 } else {
