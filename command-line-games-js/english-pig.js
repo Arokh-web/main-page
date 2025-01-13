@@ -111,15 +111,15 @@ function wordcheck() {
     } else if (vowelCheck(vowel, FirstChar)) {
       // console.log("First char is a vowel: ", word[1])
       outcomeWord = word[1] + "way" + word[2];
-    } else if (consonantCheck(consonant, FirstChar) === true) {
-      if (vowelCheck(vowel, SecChar) === true) {
+    } else if (consonantCheck(consonant, FirstChar)) {
+      if (vowelCheck(vowel, SecChar)) {
         // console.log("First is a consonant, second is a vowel: ", word[1])
         outcomeWord =
           word[1].slice(1) + FirstChar.toLowerCase() + "ay" + word[2];
-      } else if (consonantCheck(consonant, SecChar) === true) {
-        // console.log("Second Char is a consonant: ", word[1])
+      } else if (consonantCheck(consonant, SecChar)) {
         outcomeWord =
           word[1].slice(2) + FirstChar.toLowerCase() + SecChar + "ay" + word[2];
+        console.log("Second Char is a consonant: ", outcomeWord);
       }
     }
     userOutput.push(outcomeWord);
